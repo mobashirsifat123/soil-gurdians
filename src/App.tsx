@@ -552,11 +552,11 @@ function HomeScreen({ onStart }: { onStart: () => void }) {
           { emoji: '🦋', label: 'Wildlife' },
         ].map((s, i) => (
           <div key={s.label} className="flex items-center gap-5">
-            <div className="flex flex-col items-center gap-2">
-              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white/[0.05] border border-white/[0.07]">
-                <span className="text-2xl">{s.emoji}</span>
+            <div className="flex flex-col items-center gap-2 group cursor-pointer hover:-translate-y-2 transition-transform duration-300">
+              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white/[0.05] border border-white/[0.07] animate-float" style={{ animationDelay: `${i * 0.4}s` }}>
+                <span className="text-2xl group-hover:scale-125 transition-transform duration-300">{s.emoji}</span>
               </div>
-              <span className="text-xs font-bold text-white/40">{s.label}</span>
+              <span className="text-xs font-bold text-white/40 group-hover:text-emerald-400 transition-colors">{s.label}</span>
             </div>
             {i < 3 && <ArrowRight className="h-4 w-4 text-white/15" />}
           </div>

@@ -167,6 +167,14 @@ button { font: inherit; cursor: pointer; }
   0%{transform:translateY(-40px) rotate(0);opacity:0} 6%{opacity:0.2} 94%{opacity:0.2} 100%{transform:translateY(600px) rotate(420deg);opacity:0}
 }
 
+.animate-float {
+  animation: floatAnim 4s ease-in-out infinite;
+}
+@keyframes floatAnim {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
 /* ── Ambient ── */
 .amb {
   position: absolute; border-radius: 50%; pointer-events: none; z-index: 2;
