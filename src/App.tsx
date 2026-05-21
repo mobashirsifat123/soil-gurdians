@@ -740,7 +740,7 @@ export default function App() {
         {g.screen === 'game' && (
           <>
             <header className="flex items-center justify-between gap-4 px-5 py-2 border-b border-white/[0.04] bg-[#061711]/70 backdrop-blur-xl">
-              <div className="flex items-center gap-2">
+              <button type="button" onClick={() => go('home')} className="flex items-center gap-2 text-left hover:opacity-80 transition-opacity">
                 <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-to-br from-emerald-500 to-teal-500 text-white shadow-md shadow-emerald-500/15">
                   <Leaf className="h-3.5 w-3.5" />
                 </div>
@@ -748,7 +748,7 @@ export default function App() {
                   <p className="text-xs font-bold text-white/80 leading-none">Soil Guardians</p>
                   <p className="text-[9px] text-emerald-400/30">Restore the Hidden Wildlife</p>
                 </div>
-              </div>
+              </button>
               <p className="text-xs font-semibold text-white/20 poster-hide">Choose tools and restore the garden</p>
               <Pills scores={scores} prevScores={prevScores} />
             </header>
