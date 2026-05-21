@@ -258,11 +258,13 @@ function ToolDock({ zones, onGrab }: {
               {sectionTools.map((t) => (
                 <div
                   key={t.id}
-                  className={`tool-card glass flex-shrink-0 w-36 lg:w-auto ${available ? 'on' : 'off'}`}
+                  className={`tool-card glass flex-shrink-0 w-36 lg:w-auto group ${available ? 'on' : 'off'}`}
                   onPointerDown={available ? (e) => { e.preventDefault(); onGrab(t.id, e); } : undefined}
                 >
-                  <span className="text-xl shrink-0">{t.emoji}</span>
-                  <div className="min-w-0">
+                  <div className="flex items-center justify-center h-8 w-8 rounded-lg bg-white/[0.05] border border-white/[0.05] animate-float" style={{ animationDelay: `${t.value * 0.1}s` }}>
+                    <span className="text-xl shrink-0 group-hover:scale-125 transition-transform duration-300">{t.emoji}</span>
+                  </div>
+                  <div className="min-w-0 group-hover:translate-x-1 transition-transform duration-300">
                     <p className={`text-xs font-bold leading-tight ${available ? 'text-white/80' : 'text-white/25'}`}>{t.label}</p>
                     <p className="text-[10px] text-white/25">
                       {available ? `+${t.value}` : hasTarget('compost') && sec.cat === 'water' ? 'Needs compost' : sec.cat === 'habitat' && !hasTarget('habitat') ? 'Needs water' : '—'}
@@ -339,10 +341,10 @@ function Garden({ zones, scores, dragging, hoverIdx, setHover }: {
             onPointerLeave={() => setHover(null)}
           >
             {/* Stacked content */}
-            <div className="flex flex-col items-center gap-0.5">
-              {z.habitat && <span className="text-3xl zone-pop">{habitatEmoji(z.habitat)}</span>}
-              {z.water && !z.habitat && <span className="text-3xl zone-pop">{plantEmoji(z.water, i)}</span>}
-              {z.compost && !z.water && <span className="text-2xl zone-pop">{compostEmoji(z.compost)}</span>}
+            <div className="flex flex-col items-center gap-0.5 group cursor-default">
+              {z.habitat && <span className="text-3xl zone-pop animate-sway group-hover:scale-125 transition-transform duration-300 inline-block origin-bottom">{habitatEmoji(z.habitat)}</span>}
+              {z.water && !z.habitat && <span className="text-3xl zone-pop animate-sway group-hover:scale-125 transition-transform duration-300 inline-block origin-bottom" style={{ animationDelay: '0.2s' }}>{plantEmoji(z.water, i)}</span>}
+              {z.compost && !z.water && <span className="text-2xl zone-pop animate-breathe group-hover:scale-125 transition-transform duration-300 inline-block" style={{ animationDelay: '0.4s' }}>{compostEmoji(z.compost)}</span>}
               {!hasAny && canAcceptDrag && <span className="text-xl text-emerald-400/40">＋</span>}
               {!hasAny && !canAcceptDrag && <span className="text-lg text-white/10">·</span>}
             </div>

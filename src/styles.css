@@ -175,6 +175,22 @@ button { font: inherit; cursor: pointer; }
   50% { transform: translateY(-8px); }
 }
 
+.animate-sway {
+  animation: swayAnim 3.5s ease-in-out infinite;
+}
+@keyframes swayAnim {
+  0%, 100% { transform: rotate(-3deg); }
+  50% { transform: rotate(3deg); }
+}
+
+.animate-breathe {
+  animation: breatheAnim 4s ease-in-out infinite;
+}
+@keyframes breatheAnim {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
 /* ── Ambient ── */
 .amb {
   position: absolute; border-radius: 50%; pointer-events: none; z-index: 2;
