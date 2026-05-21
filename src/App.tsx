@@ -247,18 +247,18 @@ function ToolDock({ zones, onGrab }: {
   ];
 
   return (
-    <aside className="flex flex-col gap-1 overflow-y-auto py-0.5 pr-1">
+    <aside className="flex overflow-x-auto lg:flex-col lg:overflow-y-auto lg:overflow-x-hidden gap-4 lg:gap-1 py-1 lg:py-0.5 pr-1 pb-3 lg:pb-0.5 scrollbar-hide">
       {sections.map((sec) => {
         const sectionTools = TOOLS.filter((t) => t.cat === sec.cat);
         const available = hasTarget(sec.cat);
         return (
-          <div key={sec.cat}>
+          <div key={sec.cat} className="flex-shrink-0">
             <p className="text-[9px] font-bold uppercase tracking-[0.15em] text-white/20 px-1 py-1.5">{sec.title}</p>
-            <div className="flex flex-col gap-1">
+            <div className="flex lg:flex-col gap-2 lg:gap-1">
               {sectionTools.map((t) => (
                 <div
                   key={t.id}
-                  className={`tool-card glass ${available ? 'on' : 'off'}`}
+                  className={`tool-card glass flex-shrink-0 w-36 lg:w-auto ${available ? 'on' : 'off'}`}
                   onPointerDown={available ? (e) => { e.preventDefault(); onGrab(t.id, e); } : undefined}
                 >
                   <span className="text-xl shrink-0">{t.emoji}</span>
@@ -734,17 +734,7 @@ export default function App() {
 
   return (
     <>
-      {/* Mobile */}
-      <div className="mobile-gate app-bg">
-        <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-500 text-white">
-          <Leaf className="h-8 w-8" />
-        </div>
-        <h2 className="text-xl font-bold text-white">Soil Guardians</h2>
-        <p className="text-sm text-white/40 max-w-xs">Please play on a laptop for the best experience.</p>
-      </div>
-
-      {/* Desktop */}
-      <div className={`desktop-content app-bg ${poster ? 'poster-mode' : ''}`}>
+      <div className={`app-bg ${poster ? 'poster-mode' : ''}`}>
         {g.screen === 'home' && <HomeScreen onStart={() => go('game')} />}
 
         {g.screen === 'game' && (
