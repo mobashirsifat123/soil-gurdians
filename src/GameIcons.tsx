@@ -372,55 +372,77 @@ export function GardenCompostSVG({ variant }: { variant: 'small-compost' | 'medi
   );
 }
 
-export function GardenPlantSVG({ variant, idx }: { variant: 'light-water' | 'steady-water' | 'deep-water'; idx: number }) {
+export function GardenPlantSVG({ variant, idx: _idx }: { variant: 'light-water' | 'steady-water' | 'deep-water'; idx: number }) {
   if (variant === 'light-water') {
+    // Damp soil with a few water droplets and a tiny sprout
     return (
-      <svg width="36" height="38" viewBox="0 0 36 38" fill="none" className="inline-block">
-        <path d="M18 36V24" stroke="#66BB6A" strokeWidth="2" strokeLinecap="round" />
-        <ellipse cx="18" cy="22" rx="6" ry="5" fill="#81C784" />
-        <ellipse cx="16" cy="20.5" rx="3" ry="2.5" fill="#A5D6A7" opacity="0.5" />
-        <circle cx="15" cy="19" r="0.8" fill="#C8E6C9" opacity="0.5" />
+      <svg width="40" height="36" viewBox="0 0 40 36" fill="none" className="inline-block">
+        {/* Moist soil patch */}
+        <ellipse cx="20" cy="30" rx="14" ry="5" fill="#6B5040" />
+        <ellipse cx="20" cy="28.5" rx="11" ry="3.5" fill="#7A5E4A" />
+        {/* Moisture sheen */}
+        <ellipse cx="18" cy="27.5" rx="5" ry="1.5" fill="#90CAF9" opacity="0.15" />
+        {/* Water droplets */}
+        <circle cx="14" cy="24" r="1.8" fill="#64B5F6" opacity="0.6" className="water-drip-light" />
+        <circle cx="26" cy="22" r="1.4" fill="#90CAF9" opacity="0.5" className="water-drip-light" style={{ animationDelay: '0.5s' }} />
+        <circle cx="20" cy="20" r="1" fill="#42A5F5" opacity="0.4" className="water-drip-light" style={{ animationDelay: '1s' }} />
+        {/* Tiny sprout */}
+        <path d="M20 28V25" stroke="#81C784" strokeWidth="1.2" strokeLinecap="round" />
+        <ellipse cx="20" cy="24" rx="2" ry="1.5" fill="#A5D6A7" opacity="0.7" />
       </svg>
     );
   }
   if (variant === 'steady-water') {
+    // More moisture, small sprouts emerging from wet soil
     return (
-      <svg width="40" height="42" viewBox="0 0 40 42" fill="none" className="inline-block">
-        <path d="M20 40V22" stroke="#43A047" strokeWidth="2.2" strokeLinecap="round" />
-        <path d="M14 32c-3-2-5-5-3.5-8" stroke="#66BB6A" strokeWidth="1.5" fill="none" strokeLinecap="round" />
-        <path d="M26 30c2.5-2 4-5 3-7.5" stroke="#66BB6A" strokeWidth="1.3" fill="none" strokeLinecap="round" />
-        <ellipse cx="20" cy="18" rx="9" ry="8" fill="#4CAF50" />
-        <ellipse cx="17" cy="16" rx="5" ry="4" fill="#81C784" opacity="0.5" />
-        <ellipse cx="24" cy="19" rx="3.5" ry="3" fill="#388E3C" opacity="0.45" />
-        <circle cx="16" cy="14" r="1" fill="#C8E6C9" opacity="0.45" />
-        <circle cx="23" cy="15" r="0.8" fill="#A5D6A7" opacity="0.35" />
+      <svg width="42" height="38" viewBox="0 0 42 38" fill="none" className="inline-block">
+        {/* Wet soil */}
+        <ellipse cx="21" cy="31" rx="15" ry="5.5" fill="#5C4535" />
+        <ellipse cx="21" cy="29.5" rx="12" ry="4" fill="#6B5040" />
+        {/* Water glow */}
+        <ellipse cx="21" cy="28" rx="10" ry="3" fill="#42A5F5" opacity="0.1" className="animate-breathe" />
+        {/* Moisture sheen */}
+        <ellipse cx="18" cy="28" rx="6" ry="2" fill="#90CAF9" opacity="0.18" />
+        <ellipse cx="25" cy="29" rx="4" ry="1.5" fill="#64B5F6" opacity="0.12" />
+        {/* Water drops - more */}
+        <circle cx="12" cy="22" r="2" fill="#42A5F5" opacity="0.6" className="water-drip-steady" />
+        <circle cx="28" cy="20" r="1.8" fill="#64B5F6" opacity="0.55" className="water-drip-steady" style={{ animationDelay: '0.3s' }} />
+        <circle cx="20" cy="18" r="1.5" fill="#90CAF9" opacity="0.45" className="water-drip-steady" style={{ animationDelay: '0.6s' }} />
+        <circle cx="16" cy="19" r="1" fill="#42A5F5" opacity="0.35" className="water-drip-steady" style={{ animationDelay: '0.9s' }} />
+        {/* Small sprouts */}
+        <path d="M17 29V25" stroke="#66BB6A" strokeWidth="1.3" strokeLinecap="round" />
+        <ellipse cx="17" cy="24" rx="2.5" ry="1.8" fill="#81C784" opacity="0.8" />
+        <path d="M25 29V26" stroke="#81C784" strokeWidth="1.2" strokeLinecap="round" />
+        <ellipse cx="25" cy="25.5" rx="2" ry="1.5" fill="#A5D6A7" opacity="0.7" />
       </svg>
     );
   }
-  // deep-water: vibrant blooming flower
-  const flowerColors = ['#E91E63', '#FF5722', '#FF9800', '#AB47BC', '#EF5350'];
-  const fc = flowerColors[idx % flowerColors.length];
+  // deep-water: glistening wet soil with rich moisture and small seedlings
   return (
-    <svg width="44" height="44" viewBox="0 0 44 44" fill="none" className="inline-block">
-      <path d="M22 42V20" stroke="#2E7D32" strokeWidth="2.5" strokeLinecap="round" />
-      <path d="M15 34c-4-2-6-6-4.5-10" stroke="#43A047" strokeWidth="1.6" fill="none" strokeLinecap="round" />
-      <path d="M29 30c3.5-2 5-5 4-9" stroke="#43A047" strokeWidth="1.4" fill="none" strokeLinecap="round" />
-      {/* Leaves */}
-      <ellipse cx="12" cy="26" rx="5" ry="2.5" fill="#43A047" transform="rotate(-30 12 26)" />
-      <ellipse cx="32" cy="24" rx="4.5" ry="2.2" fill="#388E3C" transform="rotate(25 32 24)" />
-      {/* Flower petals - bright and vibrant */}
-      {[0, 60, 120, 180, 240, 300].map((angle) => (
-        <ellipse
-          key={angle}
-          cx="22" cy="12"
-          rx="4" ry="6"
-          fill={fc}
-          opacity="0.85"
-          transform={`rotate(${angle} 22 15)`}
-        />
-      ))}
-      <circle cx="22" cy="15" r="3.5" fill="#FFEB3B" />
-      <circle cx="22" cy="15" r="1.8" fill="#FF9800" opacity="0.7" />
+    <svg width="44" height="40" viewBox="0 0 44 40" fill="none" className="inline-block">
+      {/* Blue glow */}
+      <ellipse cx="22" cy="26" rx="18" ry="12" fill="#1976D2" opacity="0.08" className="animate-breathe" />
+      {/* Wet rich soil */}
+      <ellipse cx="22" cy="32" rx="16" ry="6" fill="#4A3828" />
+      <ellipse cx="22" cy="30.5" rx="13" ry="4.5" fill="#5C4535" />
+      {/* Strong moisture sheen */}
+      <ellipse cx="19" cy="29.5" rx="8" ry="2.5" fill="#64B5F6" opacity="0.2" />
+      <ellipse cx="26" cy="30.5" rx="5" ry="2" fill="#42A5F5" opacity="0.15" />
+      {/* Many animated water drops */}
+      <circle cx="10" cy="20" r="2.2" fill="#42A5F5" opacity="0.7" className="water-drip-deep" />
+      <circle cx="30" cy="18" r="2" fill="#1E88E5" opacity="0.6" className="water-drip-deep" style={{ animationDelay: '0.2s' }} />
+      <circle cx="18" cy="16" r="1.8" fill="#64B5F6" opacity="0.55" className="water-drip-deep" style={{ animationDelay: '0.4s' }} />
+      <circle cx="26" cy="14" r="1.5" fill="#90CAF9" opacity="0.5" className="water-drip-deep" style={{ animationDelay: '0.6s' }} />
+      <circle cx="14" cy="17" r="1.2" fill="#42A5F5" opacity="0.4" className="water-drip-deep" style={{ animationDelay: '0.8s' }} />
+      <circle cx="34" cy="22" r="1" fill="#64B5F6" opacity="0.35" className="water-drip-deep" style={{ animationDelay: '1s' }} />
+      {/* Small seedlings */}
+      <path d="M16 30V25" stroke="#43A047" strokeWidth="1.5" strokeLinecap="round" />
+      <ellipse cx="16" cy="24" rx="3" ry="2" fill="#66BB6A" opacity="0.85" />
+      <ellipse cx="15" cy="23" rx="1.5" ry="1" fill="#A5D6A7" opacity="0.5" />
+      <path d="M22 30V26" stroke="#4CAF50" strokeWidth="1.4" strokeLinecap="round" />
+      <ellipse cx="22" cy="25.5" rx="2.5" ry="1.8" fill="#81C784" opacity="0.8" />
+      <path d="M28 31V27" stroke="#66BB6A" strokeWidth="1.3" strokeLinecap="round" />
+      <ellipse cx="28" cy="26.5" rx="2" ry="1.5" fill="#A5D6A7" opacity="0.75" />
     </svg>
   );
 }
